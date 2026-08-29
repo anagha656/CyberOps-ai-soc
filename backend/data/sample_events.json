@@ -1,0 +1,37 @@
+sample_events = [
+    {
+        "id": 1,
+        "event_type": "Failed Login",
+        "source_ip": "203.0.113.45",
+        "username": "admin",
+        "description": "Multiple failed SSH login attempts detected."
+    },
+    {
+        "id": 2,
+        "event_type": "Suspicious Login",
+        "source_ip": "198.51.100.23",
+        "username": "user01",
+        "description": "Login detected from an unusual location."
+    },
+    {
+        "id": 3,
+        "event_type": "Port Scan",
+        "source_ip": "192.0.2.76",
+        "username": None,
+        "description": "Multiple network ports scanned from one source."
+    },
+    {
+        "id": 4,
+        "event_type": "Unusual Data Transfer",
+        "source_ip": "203.0.113.88",
+        "username": "employee01",
+        "description": "Large outbound data transfer detected."
+    },
+    {
+        "id": 5,
+        "event_type": "Malware",
+        "source_ip": "198.51.100.77",
+        "username": "employee02",
+        "description": "Suspicious malware activity detected."
+    }
+]
