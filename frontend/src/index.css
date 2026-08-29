@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-cyan: #22d3ee;
+  --color-cyan-dim: #67e8f9;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #050814;
+  --bg-elevated: #0b1220;
+  --panel: rgba(12, 20, 38, 0.72);
+  --panel-border: rgba(96, 165, 250, 0.14);
+  --text: #dbe7f3;
+  --muted: #8aa0b8;
+  --cyan: #22d3ee;
+  --critical: #f43f5e;
+  --high: #fb923c;
+  --medium: #fbbf24;
+  --low: #34d399;
+  --grid: rgba(34, 211, 238, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-shell {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 248px 1fr;
+  background:
+    radial-gradient(1200px 500px at 80% -10%, rgba(34, 211, 238, 0.08), transparent 50%),
+    radial-gradient(900px 400px at 0% 100%, rgba(59, 130, 246, 0.08), transparent 45%),
+    linear-gradient(180deg, #060a14 0%, #050814 100%);
+}
+
+.sidebar {
+  border-right: 1px solid var(--panel-border);
+  background: rgba(6, 10, 20, 0.88);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  position: sticky;
+  top: 0;
+}
+
+.glass {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+}
+
+.grid-fade {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--muted);
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.nav-link:hover {
+  background: rgba(34, 211, 238, 0.08);
+  color: #e8f6ff;
+}
+
+.nav-link.active {
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.16), rgba(37, 99, 235, 0.12));
+  color: #f0fbff;
+  box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.18);
+}
+
+.stat-card:hover,
+.table-row:hover {
+  border-color: rgba(34, 211, 238, 0.28);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+  animation: pulse 1.8s infinite;
+}
+
+.pulse-dot.off {
+  background: #f43f5e;
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-critical { color: #fecdd3; background: rgba(244, 63, 94, 0.18); }
+.badge-high { color: #ffedd5; background: rgba(251, 146, 60, 0.18); }
+.badge-medium { color: #fef3c7; background: rgba(251, 191, 36, 0.16); }
+.badge-low { color: #d1fae5; background: rgba(52, 211, 153, 0.16); }
+.badge-unknown { color: #cbd5e1; background: rgba(148, 163, 184, 0.16); }
+.badge-active { color: #a7f3d0; background: rgba(16, 185, 129, 0.16); }
+.badge-idle { color: #bae6fd; background: rgba(14, 165, 233, 0.14); }
+.badge-offline { color: #fecaca; background: rgba(239, 68, 68, 0.16); }
+.badge-investigating { color: #fde68a; background: rgba(245, 158, 11, 0.16); }
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.25) transparent;
+}
+
+@media (max-width: 1024px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    z-index: 40;
+    transform: translateX(-105%);
+    width: 248px;
+    transition: transform 200ms ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
